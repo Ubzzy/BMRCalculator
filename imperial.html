@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>BMR Calculator</title>
+    <style type="text/css">
+        .auto-style1 {
+            text-align: right;
+        }
+
+        .auto-style2 {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Basal Metabolic Rate (BMR) Calculator</header>
+
+    <main>
+        <table id="ttop" cellspacing="5">
+            <tr>
+                <td style="width: 25%">
+                    <div class="links1">Imperial BMR Calculator</div>
+                </td>
+                <td style="width: 25%"><a href="index.html">
+                        <div class="links">Metric BMR Calculator</div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+        <form action="#" method="post">
+            <h1>Imperial BMR Calculator</h1>
+            <table>
+                <tr>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td class="auto-style1">
+                        &nbsp;Gender:
+                    </td>
+                    <td>
+                        <input name="gender" type="radio" tabindex="1" id="gender" value="male" checked="checked">M
+                        &nbsp;
+                        <input name="gender" type="radio" tabindex="3" id="gender" value="female">F
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td class="auto-style1">Age:</td>
+                    <td>
+                        <input type="number" tabindex="5" size="10" id="age" name="txtAge" required="required"
+                            value="20" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">&nbsp;<strong>Weight:</strong></td>
+                    <td class="auto-style1"></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td class="auto-style1">Pounds:</td>
+                    <td>
+                        <input type="number" name="txtPounds" tabindex="11" size="10" id="pounds" required="required"
+                            value="160" />
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style1"><strong>Height:</strong></td>
+                    <td class="auto-style1"></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">Feet: </td>
+                    <td class="auto-style2">&nbsp;<input type="number" name="txtFeet" tabindex="7" size="10" id="feet"
+                            required="required" value="5" /></td>
+                    <td class="auto-style1">Inches:</td>
+                    <td>
+                        <input type="number" name="txtInches" tabindex="9" size="10" id="inches" required="required"
+                            value="11" />
+                    </td>
+                </tr>
+            </table>
+            <button type="button" onclick="calculate()">Calculate BMR</button>
+        </form>
+        <p id="BMR">Your BMR is ....</p>
+
+
+
+    </main>
+
+    <footer>&copy;&nbsp;Copyright Ubaid Delawala #301150030 - COMP213 - Summer 2021</footer>
+
+    <script type="text/javascript">
+        function calculate() {
+            var gender = document.getElementById("gender").value;
+            var age = document.getElementById("age").value;
+            var feet = document.getElementById("feet").value;
+            var inches = document.getElementById("inches").value;
+            var pounds = document.getElementById("pounds").value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var totalInches = (feet * 12) + parseInt(inches);
+            var maleBMR = (66 + (6.23 * pounds) + (12.7 * totalInches) - (6.8 * age));
+            var femaleBMR = (655 + (4.35 * pounds) + (4.7 * totalInches) - (4.7 * age));
+
+            if (gender.value === "male") {
+                document.getElementById("BMR").innerHTML = "Your BMR is " + maleBMR.toFixed(0) + " Calories/day";
+            } else {
+                document.getElementById("BMR").innerHTML = "Your BMR is " + femaleBMR.toFixed(0) + " Calories/day";
+            }
+            console.log(totalInches)
+        }
+    </script>
+</body>
+
+</html>
